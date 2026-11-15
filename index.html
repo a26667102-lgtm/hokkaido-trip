@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>宏宏宏旅行團｜北海道冬季旅遊</title>
+<style>
+:root{--bg:#e8eff1;--card:#fff;--tx:#2f3a3f;--sub:#6b7a80;--pri:#2a6fa8;--red:#d25a46;--green:#8fc08f;--gold:#f2b83c;--soft:#e3f1f6;--bd:#d5e0e4;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14191c;--card:#1f272b;--tx:#e8eef0;--sub:#93a3aa;--pri:#6db3ea;--soft:#243840;--bd:#2f3c42}}
+:root[data-theme="dark"]{--bg:#14191c;--card:#1f272b;--tx:#e8eef0;--sub:#93a3aa;--pri:#6db3ea;--soft:#243840;--bd:#2f3c42}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:-apple-system,"PingFang TC","Noto Sans TC","Microsoft JhengHei",sans-serif;line-height:1.5;max-width:560px;margin:0 auto;padding-bottom:40px}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:10}
+header{padding:20px 18px 8px;text-align:center}
+header h1{margin:0;font-size:22px}
+header p{margin:4px 0 0;color:var(--sub);font-size:14px}
+.badge{display:inline-block;background:var(--red);color:#fff;border-radius:99px;padding:2px 12px;font-size:13px;margin-top:8px}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);display:flex;gap:8px;overflow-x:auto;padding:10px 14px}
+nav button{flex:none;border:1px solid var(--bd);background:var(--card);color:var(--tx);border-radius:99px;padding:8px 16px;font-size:15px;font-family:inherit}
+nav button.on{background:var(--pri);color:#fff;border-color:var(--pri)}
+main{padding:4px 14px}
+section{display:none}section.on{display:block}
+.card{background:var(--card);border-radius:16px;padding:14px 16px;margin:12px 0;border-left:5px solid var(--pri);box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.card.g{border-color:var(--green)}.card.y{border-color:var(--gold)}.card.r{border-color:var(--red)}
+.lab{font-size:13px;color:var(--pri);font-weight:600}
+.big{font-size:26px;font-weight:700;color:#2e8b6a;margin:4px 0}
+.card h3{margin:2px 0;font-size:17px}
+.sub{color:var(--sub);font-size:14px}
+.tip{background:var(--soft);border-radius:10px;padding:8px 12px;margin-top:8px;font-size:14px}
+.chips{display:flex;gap:6px;overflow-x:auto;padding:4px 0 2px}
+.chips button{flex:none;border:0;border-radius:12px;padding:8px 14px;font-family:inherit;font-size:14px;color:#3a3a2a;font-weight:600}
+.chips button:not(.on){opacity:.45}
+.tl{list-style:none;margin:8px 0 0;padding:0}
+.tl li{display:flex;gap:12px;padding:9px 0;border-top:1px dashed var(--bd)}
+.tl li:first-child{border-top:0}
+.tl b{flex:none;width:50px;color:var(--pri);font-variant-numeric:tabular-nums}
+.todo{color:var(--red);font-size:12px;border:1px solid var(--red);border-radius:6px;padding:0 5px;margin-left:4px;white-space:nowrap}
+.cd{margin:12px auto 0;background:var(--card);border-radius:16px;padding:10px 16px;max-width:320px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.cd small{display:block;color:var(--sub);font-size:13px}
+.cd strong{font-size:34px;color:var(--red);line-height:1.2}
+.cd span{font-size:15px;margin-left:4px}
+a{color:var(--pri)}
+label.ck{display:flex;gap:10px;align-items:flex-start;padding:7px 0;font-size:15px}
+label.ck input{width:20px;height:20px;margin-top:2px}
+.warn{border-color:var(--red)}
+</style>
+</head>
+<body>
+<header>
+<h1>宏宏宏旅行團 ✈️</h1>
+<p>北海道冬季旅遊｜2027/02/06 – 02/11</p>
+<span class="badge">6 天・13 大 2 小</span>
+<div class="cd" id="cd"></div>
+</header>
+<nav id="nav"></nav>
+<main>
+<section id="t-fly"></section>
+<section id="t-plan"></section>
+<section id="t-food"></section>
+<section id="t-stay"></section>
+<section id="t-note"></section>
+</main>
+<script>
+var TABS=[["fly","✈️ 航班"],["plan","🗓 行程"],["food","🍜 美食"],["stay","🏨 住宿"],["note","🎒 須知"]];
+var DAYS=[
+{c:"#9fc89f",t:"2/6 機場散步行",i:[["12:00","機場集合會面（提前到的人先去拉麵街吃午餐）"],["14:30","回飯店（在國內線吃天丼等）"],["15:40","飯店報到"],["16:00","出門坐電車（大通站，東豐線 2 站）"],["16:30","諏訪神社（17:00 御守關門）"],["17:00","狸小路散步，回家晚餐吃湯咖哩及限量冰淇淋"]]},
+{c:"#f4bf4a",t:"2/7 泛舟玩雪行",i:[["10:30","出發"],["11:30","定山溪泛舟"],["13:30","午餐｜十勝豚丼いっぴん 東雁来店","待訂"],["15:00","莫埃來沼公園玩雪盆配日落（太冷室內有暖氣）"],["17:30","回程"],["18:00","晚餐｜耀（海鮮、肉放題）12/1 訂位"],["20:00","回家，自由活動"]]},
+{c:"#f6d9dc",t:"2/8 浪漫小樽行",i:[["10:00","出發"],["10:30","白色戀人公園"],["11:30","前往小樽（吃午餐）"],["15:30","天狗山夜景（車程 10 分鐘，纜車也許會排隊）"],["17:00","小樽運河點燈感受氣氛"],["19:15","晚餐｜牛しゃぶ 牛すき 禅（訂位成功 ✅）"],["20:00","回家，自由活動（整理行李箱，隔天退房）"]]},
+{c:"#e9d8ea",t:"2/9 旭川雪祭行",i:[["09:30","出發（退房 → 旭川）"],["11:30","聖誕禮物公園：滑雪、雪盆、雪橇（裡面有熱食部）"],["15:30","回飯店休息（OMO7 旭川）"],["17:00","旭川雪祭會場"],["19:00","晚餐時間","待訂"],["20:00","回家，自由活動（整理行李箱，隔天退房）"]]},
+{c:"#ecd27e",t:"2/10 雪上玩樂行",i:[["09:30","回札幌"],["11:00","白鬚瀑布、白金青池（車程 1 小時）"],["12:00","四季彩之丘：雪上摩托車（車程 20 分鐘）"],["14:30","回程（車程 2 小時 20 分鐘）"],["17:00","飯店報到（Sapporo Grand Hotel）"],["17:20","札幌雪祭會場看冰雕"],["18:00","晚餐｜德壽 K-place 10F 夜景餐廳","待訂"],["20:00","回家，自由活動"]]},
+{c:"#d9705c",t:"2/11 嗚嗚回家惹",i:[["09:30","起床吃早餐"],["11:30","最後市區散步"],["12:30","前往機場（車程 1 小時）"],["14:00","機場逛街"],["16:10","機場報到（18:00 候機室等待，18:40 起飛）"]]}
+];
+var FOOD=[["2/6 午餐","機場拉麵街","提前到的人先吃",""],["2/6 晚餐","湯咖哩＋限量冰淇淋","狸小路散步後回家吃",""],["2/7 午餐","十勝豚丼いっぴん 東雁来店","待訂",1],["2/7 晚餐","耀","海鮮、肉放題｜12/1 訂位",""],["2/8 午餐","小樽午餐","自行選擇",""],["2/8 晚餐 19:15","牛しゃぶ 牛すき 禅","訂位成功 ✅",""],["2/9 晚餐","旭川晚餐","待訂",1],["2/10 晚餐","德壽 K-place 10F 夜景餐廳","待訂",1]];
+var STAY=[["東急 Stay 札幌大通","02/06 – 02/09（3 晚）","北海道札幌市中央區南2條西5-5-2","附早餐｜洗衣機／乾衣機、微波爐、Wi-Fi｜地鐵大通站步行約 3 分鐘｜狸小路步行 1 分鐘","g"],["OMO7 旭川（星野集團）","02/09 – 02/10（1 晚）","北海道旭川市六條通 9","Check-in 用 QR code 比較快","y"],["Sapporo Grand Hotel","02/10 – 02/11（1 晚）","北海道札幌市中央區北1條西4","英國女王、日本皇室指名入住飯店｜Western and Japanese Style Buffet","r"]];
+var NOTE=["護照","有電池的產品要放在身上（行動電源、相機電池）","去程托運每人 20 公斤","回程托運每人 30 公斤","保暖衣物、防滑雪鞋、手套帽子","日幣現金與信用卡","網路 eSIM／漫遊","個人藥品"];
+function $(i){return document.getElementById(i)}
+function todo(f){return f?'<span class="todo">待訂</span>':''}
+function map(q){return 'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(q)}
+function flight(l,cl,n,r,a,b,tip){return '<div class="card '+cl+'"><div class="lab">'+l+'</div><h3>'+n+'</h3><div class="sub">'+r+'</div><div class="big">'+a+' → '+b+'</div>'+(tip?'<div class="tip">'+tip+'</div>':'')+'</div>'}
+$("t-fly").innerHTML=
+flight("✈️ 去程航班（2/6）","","亞洲航空 FD242","台北 TPE → 札幌 CTS","07:25","12:00","第 1 航廈")+
+flight("✈️ 去程航班（2/6）","y","虎航 IT234","台北 TPE → 札幌 CTS","06:20","10:55","第 1 航廈")+
+flight("🛬 回程航班（2/11）","g","酷航 O76WUI","札幌 CTS → 台北 TPE","18:40","21:05","16:10 機場報到｜18:00 候機室等待")+
+'<div class="card"><div class="lab">🧳 行李限重</div><div class="tip">去程每人 20 公斤｜回程每人 30 公斤</div></div>';
+var dayHtml=function(k){var d=DAYS[k];return '<div class="card" style="border-color:'+d.c+'"><h3>DAY '+(k+1)+'｜'+d.t+'</h3><ul class="tl">'+d.i.map(function(x){return '<li><b>'+x[0]+'</b><span>'+x[1]+(x[2]?'<span class="todo">'+x[2]+'</span>':'')+'</span></li>'}).join('')+'</ul></div>'};
+$("t-plan").innerHTML='<div class="sub" style="margin:6px 2px">札幌 → 小樽 → 札幌 → 旭川 → 札幌</div><div class="chips" id="chips">'+DAYS.map(function(d,k){return '<button data-k="'+k+'" style="background:'+d.c+'">DAY '+(k+1)+'</button>'}).join('')+'</div><div id="day"></div>';
+function showDay(k){$("day").innerHTML=dayHtml(k);[].forEach.call($("chips").children,function(b){b.className=(+b.dataset.k===k)?"on":""})}
+$("chips").onclick=function(e){if(e.target.dataset.k!=null)showDay(+e.target.dataset.k)};
+showDay(0);
+$("t-food").innerHTML=FOOD.map(function(f){return '<div class="card y"><div class="lab">'+f[0]+'</div><h3>'+f[1]+todo(f[3])+'</h3><div class="sub">'+f[2]+'</div></div>'}).join('');
+$("t-stay").innerHTML=STAY.map(function(s){return '<div class="card '+s[4]+'"><h3>'+s[0]+'</h3><div class="lab">'+s[1]+'</div><div class="sub">📍 '+s[2]+'</div><div class="tip">'+s[3]+'</div><div style="margin-top:8px"><a href="'+map(s[0])+'" target="_blank" rel="noopener">開啟地圖 →</a></div></div>'}).join('');
+var saved={};try{saved=JSON.parse(localStorage.getItem("hk-ck")||"{}")}catch(e){}
+$("t-note").innerHTML='<div class="card"><h3>出發前檢查</h3>'+NOTE.map(function(n,i){return '<label class="ck"><input type="checkbox" data-i="'+i+'"'+(saved[i]?' checked':'')+'><span>'+n+'</span></label>'}).join('')+'</div><div class="card r"><h3>貼心提醒</h3><div class="sub">隨身攜帶護照及重要物品。快快樂樂出門，平平安安回家 ❤️</div></div><div class="card"><div class="lab">團隊分工</div><div class="sub">導遊：瓜瓜副團長｜財務部長：金令師妹｜設計部長：金奇大師｜美食部長：泡泡豬｜攝影部長：燒仙草</div></div>';
+$("t-note").onchange=function(e){var i=e.target.dataset.i;if(i==null)return;saved[i]=e.target.checked;try{localStorage.setItem("hk-ck",JSON.stringify(saved))}catch(x){}};
+$("nav").innerHTML=TABS.map(function(t){return '<button data-t="'+t[0]+'">'+t[1]+'</button>'}).join('');
+function tab(t){TABS.forEach(function(x){$("t-"+x[0]).className=x[0]===t?"on":""});[].forEach.call($("nav").children,function(b){b.className=b.dataset.t===t?"on":""});window.scrollTo(0,0)}
+$("nav").onclick=function(e){if(e.target.dataset.t)tab(e.target.dataset.t)};
+function countdown(){var n=new Date(),t=new Date(n.getFullYear(),n.getMonth(),n.getDate()),s=new Date(2027,1,6),e=new Date(2027,1,11),D=864e5,d=Math.round((s-t)/D),h;
+if(d>0)h='<small>距離出發還有</small><strong>'+d+'</strong><span>天</span>';
+else if(t<=e){var k=Math.round((t-s)/D)+1;h='<small>旅行進行中</small><strong>DAY '+k+'</strong><span>／ 6</span>';if(k>=1&&k<=6)showDay(k-1)}
+else h='<small>旅程圓滿結束</small><strong>平安回家 ❤️</strong>';
+$("cd").innerHTML=h}
+countdown();
+tab("fly");
+</script>
+</body>
+</html>
